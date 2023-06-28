@@ -1,7 +1,7 @@
 from potassium import Potassium, Request, Response
 from transformers import pipeline
 import torch
-from datasets import load_dataset
+# from datasets import load_dataset
 
 app = Potassium("my_app")
 
