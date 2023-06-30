@@ -1,7 +1,6 @@
 from potassium import Potassium, Request, Response
 from transformers import pipeline
 import torch
-# from datasets import load_dataset
 
 app = Potassium("my_app")
 
@@ -25,22 +24,32 @@ def init():
 # @app.handler runs for every call
 @app.handler()
 def handler(context: dict, request: Request) -> Response:
+    import boto3
+    import os
 
-    print(request.json)
-    # ds = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
-    # sample = ds[0]["audio"]
-    # print(sample)
+    # get bucket from environment variable
+    bucket = os.environ.get("AWS_BUCKET")
 
-    with open(request.json.get("path"), "rb") as f:
+    # get file path from request.json dict
+    path = request.json.get("path")
+
+    # set up boto3 client with credentials from environment variables
+    s3 = boto3.client(
+        "s3",
+        aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"),
+    )
+
+    # download file from bucket
+    s3.download_file(bucket, path, "sample.wav")
+
+    with open("sample.wav", "rb") as f:
         sample = f.read()
         model = context.get("model")
         outputs = model(
             sample, 
             batch_size=8
         )
-
-        # prompt = request.json.get("prompt")
-        # outputs = model(prompt)
 
         return Response(
             json = {"outputs": outputs}, 

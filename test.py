@@ -1,20 +1,13 @@
 import requests
-import json
 
 url = "http://localhost:8000"  # Replace with your actual URL
 
 # Set the file path of the MP3 file
-mp3_file_path = "test.wav"  # Replace with the actual file path
-
-# Create a dictionary to hold the file data
-files = {
-    "file": open(mp3_file_path, "rb")
-}
+mp3_file_path = "hello_world.wav"  # Replace with the actual file path
 
 # Set the additional variables
 data = {
-    "path": "test.wav",
-    "variable2": "value2"
+    "path": mp3_file_path,
 }
 
 headers = {
