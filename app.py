@@ -1,6 +1,8 @@
 from potassium import Potassium, Request, Response
 from transformers import pipeline
 import torch
+import boto3
+import os
 
 app = Potassium("my_app")
 
@@ -24,9 +26,6 @@ def init():
 # @app.handler runs for every call
 @app.handler()
 def handler(context: dict, request: Request) -> Response:
-    import boto3
-    import os
-
     # get bucket from environment variable
     bucket = os.environ.get("AWS_BUCKET")
 

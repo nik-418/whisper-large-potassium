@@ -3,7 +3,7 @@ import requests
 url = "http://localhost:8000"  # Replace with your actual URL
 
 # Set the file path of the MP3 file
-mp3_file_path = "hello_world.wav"  # Replace with the actual file path
+mp3_file_path = "hello_world.wav"
 
 # Set the additional variables
 data = {
