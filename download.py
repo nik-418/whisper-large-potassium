@@ -1,13 +1,12 @@
 # This file runs during container build time to get model weights built into the container
 
-# In this example: A Whisper Large model
+# In this example: A Whisper model
 from transformers import pipeline
 
 def download_model():
     # do a dry run of loading the huggingface model, which will download weights
     pipeline(
-        # 'fill-mask', 
-        model='openai/whisper-large'
+        model='openai/whisper-base'
     )
 
 if __name__ == "__main__":

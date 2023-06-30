@@ -11,7 +11,7 @@ def init():
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     model = pipeline(
         # "automatic-speech-recognition",
-        model="openai/whisper-large",
+        model="openai/whisper-base",
         chunk_length_s=30,
         device=device,
     )
