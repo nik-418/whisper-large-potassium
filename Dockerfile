@@ -6,11 +6,11 @@ WORKDIR /
 # Install git
 RUN apt-get update && apt-get install -y git
 
-# Install python packages
+# Install additional python packages
+# torch is already installed in this image
 RUN pip3 install --upgrade pip
 RUN pip3 install \
     potassium \
-    torch \
     transformers \
     soundfile \
     librosa \

@@ -1,1 +1,3 @@
-ffmpeg required on system
+# Requirements
+
+The `ffmpeg` system dependency is required.
